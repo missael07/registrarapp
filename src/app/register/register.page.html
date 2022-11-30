@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input required type="text" name="usrname" [(ngModel)]="user.userName" autocomplete="off"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input required type="password" name="pass" [(ngModel)]="user.password" autocomplete="off"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo de Usuario</ion-label>
+      <ion-select interface="action-sheet" [ngModel]="user.userType" name="userType" required (ionChange)="handleChange($event)">
+        <ion-select-option value="docente" >Docente</ion-select-option>
+        <ion-select-option value="alumno">Alumno</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="user.userType == 'docente'">
+      <ion-label position="floating">Asignatura</ion-label>
+      <ion-input required type="text" name="asignature" [(ngModel)]="user.asignature" autocomplete="off"></ion-input>
+    </ion-item>
+    <ion-button shape="round"
+      expand="full"
+      size="medium"
+      fill="outline"
+      type="submit" [disabled]="form.invalid" class="ion-margin-top">
+      Crear cuenta
+    </ion-button>
+  </form>
+  <ion-text color="primary" class="ion-text-center" routerLink="/login">
+    <p>Iniciar Sesión</p>
+  </ion-text>
+</ion-content>

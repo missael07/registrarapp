@@ -1,0 +1,28 @@
+<ion-content class="ion-padding">
+  <form #form="ngForm" (ngSubmit)="signIn()" autocomplete="nope">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input required type="text" name="nombre" [(ngModel)]="userName" autocomplete="nope" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input required type="password" name="pass" [(ngModel)]="password" autocomplete="nope" ></ion-input>
+    </ion-item>
+    <ion-button shape="round"
+    expand="full"
+    size="medium"
+    fill="outline"
+     type="submit" [disabled]="form.invalid" class="ion-margin-top">
+      Iniciar Sesión
+    </ion-button>
+  </form>
+  <ion-text color="primary" class="ion-text-center" routerLink="/register">
+    <p>Crear cuenta</p>
+  </ion-text>
+  <div>
+    <ion-text color="primary" class="ion-text-center" routerLink="/recover-password">
+      <p>Olvide la Contraseña</p>
+    </ion-text>
+  </div>
+</ion-content>
+

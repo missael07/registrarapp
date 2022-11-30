@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ALUMN } from '../helpers/constants';
+import { Storage } from '@ionic/storage';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthAlumnsGuard implements CanActivate {
+  constructor( private storage: Storage, private router: Router){}
+
+  async authorize(){
+    const logged = await this.storage.get('loggedUser');
+    if(logged && logged.userType.toUpperCase() === ALUMN) 
+    { 
+      console.log('test')
+      return true;
+    }
+
+    this.router.navigate(['/login']);
+    return false;
+  }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.authorize();
+  }
+  
+  
+}

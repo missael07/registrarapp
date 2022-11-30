@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <ion-header >
+    <div>
+      <ion-title size="large" class="title" *ngIf="!loading">Bienvenido {{userName}}</ion-title>
+    </div>
+  </ion-header>
+
+  <ion-button (click)="registrarAsistencia()" shape="round"
+  expand="full"
+  size="medium"
+  fill="outline" *ngIf="!loading">
+  <ion-icon slot="start" name="add"></ion-icon>
+  Registrar Asistencia
+</ion-button>
+<div id="container" *ngIf="loading">
+  <ion-spinner color="tertiary"></ion-spinner>
+</div>
+
+
+  <div *ngIf="!loading">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="logOut()" routerLink="/login">
+        <ion-icon name="exit"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ asignatureName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-accordion-group>
+    <ion-accordion [value]="item.date" *ngFor="let item of attendance">
+      <ion-item slot="header" color="light">
+        <ion-label>Asistentes del {{ item.date | date: 'dd-MMM-yyyy'}} </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content" *ngFor="let attendee of item.attendees">
+        {{attendee}}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>
